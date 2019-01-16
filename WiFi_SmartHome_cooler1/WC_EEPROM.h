@@ -6,6 +6,7 @@
 
 #ifndef WC_EEPROM_h
 #define WC_EEPROM_h
+
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 
@@ -17,10 +18,13 @@ extern int Temp;
 extern int Avalue;
 extern uint32_t tm;
 extern bool flag_light;
-extern bool flag_hum;
+extern bool light_state;
+extern bool hum_state;
 extern bool flag_btn;
 extern uint16_t timer;
-
+extern uint16_t timer_start;
+extern uint16_t timer_stop;
+extern bool new_timer_time_came;
 struct WC_Config{
 // Наименование в режиме точки доступа  
    char ESP_NAME[32];
@@ -45,8 +49,12 @@ struct WC_Config{
    uint32_t TIMEOUT_DISPLAY;
 // Интервал опроса NTP
    uint32_t TIMEOUT_NTP;
-// Период работы таймера, сек
+// Период работы таймера, часов (1, 24)
    uint16_t TIMER_PERIOD;
+// во сколько часов запускать свет (0, 23)
+   uint16_t TIMER_START_TIME;
+   // во сколько часов тушить свет (0, 23)
+   uint16_t TIMER_STOP_TIME;
 // Изменение владности, при котором запускается вентилятор
    uint16_t HUM_DELTA;
 // Абслолютное зачение влажности при которм запускается таймер

@@ -57,7 +57,7 @@ time_t GetNTP(void) {
   int cb = udp.parsePacket();
   if (!cb) {
     Serial.println("NTP server error");
-    return tm;
+    return tm ;
   }
   else {
     Serial.printf("NTP received, length=%d\n",cb);
@@ -74,11 +74,11 @@ time_t GetNTP(void) {
     unsigned long epoch = secsSince1900 - seventyYears;
 // Делаем поправку на местную тайм-зону
     tm = epoch + EC_Config.TZ*3600;    
-    Serial.printf("NTP  time = %ld\n",tm);
-    ntp_last = tm;
+    Serial.printf("NTP  time = %ld\n", tm);
+    ntp_last = tm ;
   }
-  return tm;
-}
+  return tm ;
+}//GetNTP()
 
 /**
  * Посылаем запрос NTP серверу на заданный адрес

@@ -1,7 +1,5 @@
 /**
-* Контроллер управления вытяжным вентилятором. Версия 2.0 WiFi
-* Copyright (C) 2016 Алексей Шихарбеев
-* http://samopal.pro
+* Контроллер освещения и влажности Версия 2.0 WiFi
 */
 
 #include "WC_EEPROM.h"
@@ -47,10 +45,10 @@ void EC_default(void){
 //   for( int i=0, byte *p = (byte *)&EC_Config; i<sz1; i++, p++) 
 //       *p = 0;   
      
-   strcpy(EC_Config.ESP_NAME,"SmartHome_Cooler1");
+   strcpy(EC_Config.ESP_NAME,"Nicelight_hydro_01");
    strcpy(EC_Config.ESP_PASS,"admin");
    strcpy(EC_Config.AP_SSID, "none");
-   strcpy(EC_Config.AP_PASS, "");
+   strcpy(EC_Config.AP_PASS, "1234567890=");
    EC_Config.IP[0]      = 192;   
    EC_Config.IP[1]      = 168;   
    EC_Config.IP[2]      = 1;     
@@ -71,7 +69,11 @@ void EC_default(void){
    EC_Config.TIMEOUT_CHANGE_HUM   = 60000;
    EC_Config.TIMEOUT_DISPLAY      = 5000;
    EC_Config.TIMEOUT_NTP          = 600000;
-   EC_Config.TIMER_PERIOD         = 1200;
+   
+   EC_Config.TIMER_PERIOD         = 18; // время работы освещенности в часах
+   EC_Config.TIMER_START_TIME         = 8; // время старта включения света ( в 8 утра включаем)
+   EC_Config.TIMER_STOP_TIME         = 2; // время выключения света ( в 2 ночи тушим) 
+   
    EC_Config.HUM_DELTA            = 3;
    EC_Config.HUM_MAXIMUM          = 85;  
    EC_Config.TIMEOUT_SEND1        = 900000; 
